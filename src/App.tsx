@@ -1,4 +1,3 @@
-import React from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Layout from "./pages/layout.js";
 import InfoUser from "./pages/infoUser.js";

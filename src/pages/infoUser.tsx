@@ -1,6 +1,6 @@
 import { Button, Modal } from "antd";
 import { useFormik } from "formik";
-import React, { useState } from "react";
+import { useState } from "react";
 import { useCrud } from "../store/crud";
 import { Link, useParams } from "react-router-dom";
 
