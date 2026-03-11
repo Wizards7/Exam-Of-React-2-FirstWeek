@@ -1,0 +1,38 @@
+table {
+  width: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  thead {
+    tr {
+      border: 1px solid gainsboro;
+      th {
+        padding: 8px 5px;
+      }
+    }
+  }
+  tbody {
+    tr {
+      border: 1px solid gainsboro;
+    }
+  }
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  input {
+    border: 1px solid gainsboro;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  select {
+    border: 1px solid gainsboro;
+    padding: 5px;
+    border-radius: 10px;
+  }
+  button {
+    border: 1px solid gainsboro;
+    padding: 5px;
+    border-radius: 10px;
+  }
+}
