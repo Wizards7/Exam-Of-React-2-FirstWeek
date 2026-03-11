@@ -11,26 +11,33 @@ const InfoUser = () => {
 
   const infoCustomer = data.find((user) => user.id == id);
   //   Formik
-  const { handleSubmit, handleChange, resetForm, values, setFieldValue } =
-    useFormik({
-      initialValues: {
-        img: "",
-        name: "",
-        jobType: "",
-        age: 0,
-        status: "",
-      },
-      onSubmit: (valueSubmit) => {
-        editUser({
-          id: id,
-          img: valueSubmit.img,
-          name: valueSubmit.name,
-          age: valueSubmit.age,
-        });
-        closeEdit();
-        resetForm();
-      },
-    });
+  const {
+    handleSubmit,
+    handleChange,
+    resetForm,
+    values,
+    setFieldValue,
+    touched,
+    errors,
+  } = useFormik({
+    initialValues: {
+      img: "",
+      name: "",
+      jobType: "",
+      age: 0,
+      status: "",
+    },
+    onSubmit: (valueSubmit) => {
+      editUser({
+        id: id,
+        img: valueSubmit.img,
+        name: valueSubmit.name,
+        age: valueSubmit.age,
+      });
+      closeEdit();
+      resetForm();
+    },
+  });
 
   // Edit User
   const [editModal, setEditModal] = useState(false);
@@ -105,6 +112,7 @@ const InfoUser = () => {
             onChange={handleChange}
             value={values.name}
           />
+          {errors.name && touched.name ? <div>{errors.name}</div> : null}
           <input
             type="number"
             placeholder="Age"
@@ -112,6 +120,7 @@ const InfoUser = () => {
             onChange={handleChange}
             value={values.age}
           />
+          {errors.age && touched.age ? <div>{errors.age}</div> : null}
           <button type="submit">Save</button>
         </form>
       </Modal>

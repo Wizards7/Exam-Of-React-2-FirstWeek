@@ -1,4 +1,4 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { useCrud } from "../store/crud";
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
@@ -6,12 +6,25 @@ import "../App.css";
 import { Button, Checkbox, Input, Modal } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 import iconsOfLight from "../icons/sun.svg";
+import * as Yup from "yup";
+
+const SignupSchema = Yup.object().shape({
+  name: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  age: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required("Required"),
+  email: Yup.string().email("Invalid email").required("Required"),
+});
 
 const Home = () => {
   const { data, addUser, deleteUser, toggle } = useCrud();
 
   //   Formik
-  const { handleSubmit, handleChange, resetForm } = useFormik({
+  const { handleSubmit, handleChange, resetForm, touched, errors } = useFormik({
     initialValues: {
       img: "",
       name: "",
@@ -19,6 +32,7 @@ const Home = () => {
       age: 0,
       status: "",
     },
+    validationSchema: SignupSchema,
     onSubmit: (valueSubmit) => {
       addUser({
         id: data.length + 1,
@@ -167,12 +181,15 @@ const Home = () => {
             name="name"
             onChange={handleChange}
           />
+          {errors.name && touched.name ? <div>{errors.name}</div> : null}
           <input
             type="number"
             placeholder="Age"
             name="age"
             onChange={handleChange}
           />
+          {errors.age && touched.age ? <div>{errors.age}</div> : null}
+
           <button type="submit">Save</button>
         </form>
       </Modal>
