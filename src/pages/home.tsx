@@ -45,9 +45,6 @@ const Home = () => {
   // Search Part
   const [search, setSearch] = useState("");
 
-  // Light && Dark
-  const [theme, setTheme] = useState<"light" | "dark">("light");
-
   // Add User
   const [addModal, setAddModal] = useState(false);
   function openAdd() {
